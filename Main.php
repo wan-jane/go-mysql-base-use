@@ -1,7 +1,7 @@
 <?php
 class Main {
  /**
-     * 根据经纬度查询学校节点列表
+     * 根据经纬度查询用户列表
      * @param double $lati  经度
      * @param double $longi 维度
      * @param double $range 范围,单位公里,默认是10公里以内
@@ -47,7 +47,8 @@ class Main {
         }
         return $list;
     }
-
+    
+    //市是市市先市市县接到街道转gps
     public function getGps($address, $id, $city) {
         usleep(300000);//休息0.3秒,防止api过热,也防止php内存占用过大
         $ch = curl_init();
