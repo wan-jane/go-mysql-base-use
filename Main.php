@@ -8,7 +8,7 @@ class Main {
      * @return list[]       学校节点列表
      */
     public function getSchoolNodeListByGps($lati, $longi, $range = 5) {
-        $sql = "SELECT * FROM school_node WHERE
+        $sql = "SELECT * FROM user WHERE
                 MBRContains (
                     LineString (
                             Point( ? + ? / ( 111.1 / COS(RADIANS(?))), ? + ? / 111.1),
@@ -17,7 +17,8 @@ class Main {
                      location_point
                             )
                 ORDER BY (power(ABS(?-X(location_point)),2) + power(ABS(?-Y(location_point)),2))";
-        //$sql = "SELECT *, ( 6371.004 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians ( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance FROM school_node HAVING distance < ? ORDER BY distance LIMIT 100;";
+        //$sql = "SELECT *, ( 6371.004 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians ( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance FROM user HAVING distance < ? ORDER BY distance LIMIT 100;";
+        //above is easy but very slow method 
         $stmt = $this->getDb('weibor')->prepare($sql);
         $stmt->execute([
                 $lati,
