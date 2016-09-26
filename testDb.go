@@ -1,10 +1,12 @@
 package main
 
-import "database/sql"
-import _ "github.com/go-sql-driver/mysql"
-import "fmt"
-import "time"
-import "math/rand"
+import (
+	"database/sql"
+        _ "github.com/go-sql-driver/mysql"
+        "fmt"
+        "time"
+	"math/rand"
+       )
 
 type Tips struct {
 	id      int
